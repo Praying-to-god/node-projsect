@@ -14,6 +14,11 @@ server.use(express.urlencoded({ extended: true })); //req.body
 server.use(express.static("./public"));
 
 //跨域响应头设置
+server.use((rep, res, next) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Headers", "accesstoken"); //设置为自定义的请求头名字
+  next();
+});
 
 //路由 http://localhost:3000/api
 server.use("/api", [userRouter, studentRouter]);

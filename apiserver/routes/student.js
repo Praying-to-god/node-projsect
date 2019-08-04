@@ -1,5 +1,6 @@
 //学生相关的路由代码
 const express = require("express");
+const auth = require("../middlewares/auth"); //做校验的中间件
 const router = express.Router();
 
 const studentModel = require("../models/student");
@@ -8,7 +9,7 @@ const studentModel = require("../models/student");
  * 学生查询 模糊查询有分页
  * GET /api/student
  */
-router.get("/student", async (req, res) => {
+router.get("/student", auth, async (req, res) => {
   let pageNum = parseInt(req.query.pageNum) || 1; //页数
   let pageSize = parseInt(req.query.pageSize) || 5; //页面条数
 

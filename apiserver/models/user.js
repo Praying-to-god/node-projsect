@@ -15,7 +15,7 @@ const schema = new db.Schema({
   },
   avatar: {
     type: String,
-    default: "http://localhost:3000/pig03.jpg"
+    default: "http://localhost:3000/pic03.jpg"
   }
 });
 

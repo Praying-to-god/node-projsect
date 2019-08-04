@@ -1,6 +1,7 @@
 //用户相关的路由代码
 const express = require("express");
 const bcryptjs = require("bcryptjs"); //密码加密模块
+const jwt = require("jsonwebtoken"); //生成令牌 是否登录验证
 const router = express.Router();
 
 //引入模型
@@ -16,7 +17,7 @@ router.post("/sign-up", (req, res) => {
   let password = req.body.password;
 
   //对密码加密
-  let newPassword = bcryptjs.hashSync("password", 10);
+  let newPassword = bcryptjs.hashSync(password, 10);
   let user = new userModel({
     //生成模型的实例对象
     username,
@@ -52,9 +53,25 @@ router.post("/sign-in", async (req, res) => {
     //用户名存在匹配密码
     if (bcryptjs.compareSync(password, data.password)) {
       //密码匹配成功
+      //1.生成一个token令牌
+      const token = jwt.sign(
+        {
+          userId: data._id
+        },
+        "HUI"
+      );
+      //2.响应
       res.send({
         code: 0,
-        msg: "登录成功"
+        msg: "登录成功",
+        data: {
+          userInfo: {
+            userId: data._id,
+            username: data.username,
+            avatar: data.avatar
+          },
+          token
+        }
       });
     } else {
       res.send({
