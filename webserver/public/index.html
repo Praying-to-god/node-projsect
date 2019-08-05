@@ -62,10 +62,8 @@
         <div class="ht-toolbar">
           <button class="btn">新增用户</button>
           <!-- <button class="btn">新增用户</button> -->
-          <input type="text" placeholder="目前只支持搜索昵称" />
-          <a href=" " title="搜索"
-            ><i class="iconfont icon-xingtaiduICON_sousuo--"></i
-          ></a>
+          <input id="searchName" type="text" placeholder="目前只支持搜索昵称" />
+          <i id="searchBtn" class="iconfont icon-xingtaiduICON_sousuo--"></i>
         </div>
         <!-- 信息 -->
         <table>
@@ -205,8 +203,8 @@
         </table>
         <!-- 分页 -->
         <div class="ht-pagination right">
-          <ul>
-            <li class="ht-pagination__item prev">
+          <ul class="myPage">
+            <!-- <li class="ht-pagination__item prev">
               <a href="#"><i class="iconfont icon-fenye_"></i></a>
             </li>
             <li class="ht-pagination__item active"><a href="#">1</a></li>
@@ -216,7 +214,7 @@
             <li class="ht-pagination__item"><a href="#">5</a></li>
             <li class="ht-pagination__item next">
               <a href="#"><i class="iconfont icon-fenye_1"></i></a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>

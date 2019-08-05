@@ -2,7 +2,16 @@
 const express = require("express");
 const bcryptjs = require("bcryptjs"); //密码加密模块
 const jwt = require("jsonwebtoken"); //生成令牌 是否登录验证
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+
+const auth = require("../middlewares/auth");
 const router = express.Router();
+
+const upload = multer({
+  dest: "c:/tmp"
+});
 
 //引入模型
 const userModel = require("../models/user");
@@ -85,6 +94,39 @@ router.post("/sign-in", async (req, res) => {
       msg: "用户名错误"
     });
   }
+});
+
+/**
+ * 修改头像
+ * POST /api/user/update
+ */
+router.post("/user/update", auth, upload.single("avatar"), (req, res) => {
+  //移动文件到public
+  let newFileName = new Date().getTime() + "_" + req.file.originalname; //+原始文件的位置
+  let newFilePath = path.resolve(__dirname, "../public", newFileName);
+
+  let data = fs.readFileSync(req.file.path);
+  fs.writeFileSync(newFilePath, data);
+
+  // 思考文件以及移动成功，还需要将当前用户的数据库给修改了。
+  // 要修改那么需要知道当前用户的 id
+  // 只需要，让这个接口经过 auth 中间件的处理。处理之后，就可以使用 req.userInfo.userId
+  userModel
+    .updateOne(
+      {
+        _id: req.userInfo.userId
+      },
+      {
+        avatar: `http://localhost:3000/${newFileName}`
+      }
+    )
+    .then(() => {
+      res.send({
+        code: 0,
+        msg: "修改成功",
+        data: `http://localhost:3000/${newFileName}`
+      });
+    });
 });
 
 //暴露

@@ -1,0 +1,80 @@
+<!-- 个人中心页面
+  修改头像
+-->
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>学生后台管理系统</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/iconfont.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="ht-header">
+      <div class="ht-header-left">
+        <h1><i class="iconfont icon-icon-"></i> 后台管理操作系统</h1>
+      </div>
+      <div class="ht-header-right">
+        <a><i class="iconfont icon-zhuye"></i>主页</a>
+        <a><i class="iconfont icon-gonggao"></i>系统公告</a>
+
+        <img class="avatar" src="./images/amid.jpg" alt="" />
+        <em class="userEm"
+          >Admin
+          <i class="iconfont icon-arrLeft"></i>
+        </em>
+      </div>
+    </header>
+
+    <div class="ht-main">
+      <div class="ht-menu">
+        <ul>
+          <li class="ht-menu-item">
+            <a href="/index.html" style="text-decoration: none;color: #fff">
+              <i class="iconfont icon-duorenyonghu"></i>
+              <span>学生管理</span>
+            </a>
+          </li>
+          <li class="ht-menu-item active">
+            <a href="/center.html" style="text-decoration: none;color: #fff">
+              <i class="iconfont icon-jiaose"></i>
+              <span>个人中心</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ht-body">
+        <div class="ht-nav">
+          <a href="#">
+            <i class="iconfont icon-zhuye"></i>
+            <span>系统管理</span>
+          </a>
+          <a href="#">
+            <span>> &nbsp;个人中心</span>
+          </a>
+        </div>
+        <!-- 修改头像 -->
+        <div>
+          <div class="avatar-box">
+            <i class="iconfont icon-jia"></i>
+            <input id="myFile" type="file" />
+          </div>
+          <button id="myXiu">修改头像</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="./js/center.js"></script>
+    <script src="./js/common.js"></script>
+  </body>
+</html>
